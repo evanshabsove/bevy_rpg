@@ -30,7 +30,7 @@ impl Plugin for CombatMenuPlugin {
         .add_system_set(
           SystemSet::on_update(AppState::Combat)
             .with_system(update_enemy_health_text)
-            .with_system(button_system)
+            .with_system(attack_button_system)
         );
     }
 }
@@ -98,8 +98,6 @@ fn spawn_button(parent: &mut ChildBuilder, font: Handle<Font>, text: &str) {
         });
     if text == "Attack" {
         button.insert(AttackButton);
-    } else if text == "Run" {
-      button.insert(RunButton);
     }
     button.with_children(|parent| {
       parent.spawn_bundle(
@@ -134,7 +132,7 @@ fn update_enemy_health_text(
   }
 }
 
-fn button_system(
+fn attack_button_system(
     mut interaction_query: Query<
         (&Interaction, &Children),
         (Changed<Interaction>, With<AttackButton>),

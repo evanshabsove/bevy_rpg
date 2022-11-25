@@ -35,9 +35,11 @@ fn main() {
         .insert_resource(LevelSelection::Index(0))
         .add_plugin(map::MapPlugin)
         .add_plugin(player::PlayerPlugin)
+        .add_plugin(enemy::EnemyPlugin)
         .add_plugin(combat::CombatPlugin)
         .add_plugin(combat_menu::CombatMenuPlugin)
         .register_ldtk_entity::<player::PlayerSpawnBundle>("Player_spawn")
+        .register_ldtk_entity::<enemy::EnemySpawnBundle>("Enemy_Spawn")
         .register_ldtk_int_cell::<wall::WallBundle>(1)
         .run();
 }
