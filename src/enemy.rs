@@ -47,7 +47,7 @@ fn spawn_overworld_enemys(
       .spawn_bundle(SpriteSheetBundle {
           texture_atlas: texture_atlas_handle,
             transform: Transform {
-              translation: Vec3::new(0.0,0.0, 900.0),
+              translation: Vec3::new(100.0,100.0, 900.0),
               ..Default::default()
           },
           ..default()

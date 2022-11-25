@@ -9,10 +9,15 @@ pub struct FightEvent {
   pub(crate) damage_amount: isize
 }
 
+pub struct EnterCombatEvent {
+
+}
+
 impl Plugin for CombatPlugin {
     fn build(&self, app: &mut App) {
         app
           .add_event::<FightEvent>()
+          .add_event::<EnterCombatEvent>()
         .add_system_set(
           SystemSet::on_update(AppState::Combat)
             .with_system(combat_camera)
@@ -92,14 +97,18 @@ fn combat_camera(mut camera_query: Query<&mut Transform, With<Camera>>) {
 }
 
 fn enter_combat (
+  mut enter_combat_event: EventReader<EnterCombatEvent>,
   mut keyboard: ResMut<Input<KeyCode>>,
   mut state: ResMut<State<AppState>>
 ) {
-  if keyboard.just_pressed(KeyCode::Space) {
+  for event in enter_combat_event.iter() {
     state.set(AppState::Combat).unwrap();
-
-    keyboard.clear()
   }
+  // if keyboard.just_pressed(KeyCode::Space) {
+  //   state.set(AppState::Combat).unwrap();
+
+  //   keyboard.clear()
+  // }
 }
 
 fn leave_combat(
