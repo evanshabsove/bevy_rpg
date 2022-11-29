@@ -108,7 +108,6 @@ fn player_movement(
     let target = transform.translation + Vec3::new(x_delta, y_delta, 0.0);
 
     if enemy_collision_check(target, &overworld_enemy_query) {
-      println!("Hit Enemy!");
       enter_combat_event.send(EnterCombatEvent {  });
     } else if wall_collision_check(target, &wall_query) {
       transform.translation = target;

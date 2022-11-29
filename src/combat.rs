@@ -24,10 +24,6 @@ impl Plugin for CombatPlugin {
             .with_system(damage_calculation)
         )
         .add_system_set(
-          SystemSet::on_enter(AppState::Combat)
-            .with_system(spawn_enemy)
-        )
-        .add_system_set(
           SystemSet::on_exit(AppState::Combat).with_system(despawn_enemy)
         )
         .add_system(enter_combat)
@@ -54,31 +50,31 @@ fn damage_calculation(
   }
 }
 
-fn spawn_enemy(
-    mut commands: Commands,
-    asset_server: Res<AssetServer>,
-    mut texture_atlases: ResMut<Assets<TextureAtlas>>,
-) {
-    let texture_handle = asset_server.load("mystic_woods_free_v0.2/sprites/characters/slime.png");
-    let texture_atlas = TextureAtlas::from_grid(texture_handle, Vec2::new(32.0, 32.0), 5, 7);
-    let texture_atlas_handle = texture_atlases.add(texture_atlas);
-    commands
-        .spawn_bundle(SpriteSheetBundle {
-            texture_atlas: texture_atlas_handle,
-              transform: Transform {
-                translation: Vec3::new(0.0,0.0, 900.0),
-                ..Default::default()
-            },
-            ..default()
-        })
-        .insert(Enemy)
-        .insert(CombatStats {
-            health: 3,
-            max_health: 3,
-            attack: 2,
-            defense: 1,
-        });
-}
+// fn spawn_enemy(
+//     mut commands: Commands,
+//     asset_server: Res<AssetServer>,
+//     mut texture_atlases: ResMut<Assets<TextureAtlas>>,
+// ) {
+//     let texture_handle = asset_server.load("mystic_woods_free_v0.2/sprites/characters/slime.png");
+//     let texture_atlas = TextureAtlas::from_grid(texture_handle, Vec2::new(32.0, 32.0), 5, 7);
+//     let texture_atlas_handle = texture_atlases.add(texture_atlas);
+//     commands
+//         .spawn_bundle(SpriteSheetBundle {
+//             texture_atlas: texture_atlas_handle,
+//               transform: Transform {
+//                 translation: Vec3::new(0.0,0.0, 900.0),
+//                 ..Default::default()
+//             },
+//             ..default()
+//         })
+//         .insert(Enemy)
+//         .insert(CombatStats {
+//             health: 3,
+//             max_health: 3,
+//             attack: 2,
+//             defense: 1,
+//         });
+// }
 
 fn despawn_enemy(
   mut commands: Commands,
@@ -99,10 +95,33 @@ fn combat_camera(mut camera_query: Query<&mut Transform, With<Camera>>) {
 fn enter_combat (
   mut enter_combat_event: EventReader<EnterCombatEvent>,
   mut keyboard: ResMut<Input<KeyCode>>,
-  mut state: ResMut<State<AppState>>
+  mut state: ResMut<State<AppState>>,
+  mut commands: Commands,
+  mut asset_server: Res<AssetServer>,
+  mut texture_atlases: ResMut<Assets<TextureAtlas>>,
 ) {
   for event in enter_combat_event.iter() {
     state.set(AppState::Combat).unwrap();
+
+    let texture_handle = asset_server.load("mystic_woods_free_v0.2/sprites/characters/slime.png");
+    let texture_atlas = TextureAtlas::from_grid(texture_handle, Vec2::new(32.0, 32.0), 5, 7);
+    let texture_atlas_handle = texture_atlases.add(texture_atlas);
+    commands
+        .spawn_bundle(SpriteSheetBundle {
+            texture_atlas: texture_atlas_handle,
+              transform: Transform {
+                translation: Vec3::new(0.0,0.0, 900.0),
+                ..Default::default()
+            },
+            ..default()
+        })
+        .insert(Enemy)
+        .insert(CombatStats {
+            health: 3,
+            max_health: 3,
+            attack: 2,
+            defense: 1,
+        });
   }
   // if keyboard.just_pressed(KeyCode::Space) {
   //   state.set(AppState::Combat).unwrap();
