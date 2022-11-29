@@ -54,7 +54,7 @@ fn build_combat_menu(
                 justify_content: JustifyContent::SpaceEvenly,
                 ..Style::default()
             },
-            color: bevy::prelude::UiColor(Color::BLACK),
+            background_color: bevy::prelude::BackgroundColor(Color::BLACK),
             visibility: Visibility {
                 is_visible: true,
                 ..Visibility::default()
@@ -93,7 +93,7 @@ fn spawn_button(parent: &mut ChildBuilder, font: Handle<Font>, text: &str) {
                 justify_content: JustifyContent::SpaceEvenly,
                 ..Style::default()
               },
-              color: bevy::prelude::UiColor(Color::GRAY),
+              background_color: bevy::prelude::BackgroundColor(Color::GRAY),
             ..ButtonBundle::default()
         });
     if text == "Attack" {

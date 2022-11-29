@@ -49,7 +49,7 @@ fn spawn_player(
     mut texture_atlases: ResMut<Assets<TextureAtlas>>,
 ) {
     let texture_handle = asset_server.load("player/Character_004.png");
-    let texture_atlas = TextureAtlas::from_grid(texture_handle, Vec2::new(24.0, 24.0), 3, 4);
+    let texture_atlas = TextureAtlas::from_grid(texture_handle, Vec2::new(24.0, 24.0), 3, 4, None, None);
     let texture_atlas_handle = texture_atlases.add(texture_atlas);
     commands
         .spawn_bundle(SpriteSheetBundle {

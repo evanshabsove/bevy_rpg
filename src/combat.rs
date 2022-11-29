@@ -104,7 +104,7 @@ fn enter_combat (
     state.set(AppState::Combat).unwrap();
 
     let texture_handle = asset_server.load("mystic_woods_free_v0.2/sprites/characters/slime.png");
-    let texture_atlas = TextureAtlas::from_grid(texture_handle, Vec2::new(32.0, 32.0), 5, 7);
+    let texture_atlas = TextureAtlas::from_grid(texture_handle, Vec2::new(32.0, 32.0), 5, 7, None, None);
     let texture_atlas_handle = texture_atlases.add(texture_atlas);
     commands
         .spawn_bundle(SpriteSheetBundle {
