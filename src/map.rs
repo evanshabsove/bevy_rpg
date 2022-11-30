@@ -22,7 +22,7 @@ impl Plugin for MapPlugin {
 }
 
 pub fn spawn_map(mut commands: Commands, asset_server: Res<AssetServer>) {
-    commands.spawn_bundle(LdtkWorldBundle {
+    commands.spawn(LdtkWorldBundle {
         ldtk_handle: asset_server.load("Untitled.ldtk"),
         ..Default::default()
     }).insert(Map);

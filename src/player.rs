@@ -52,7 +52,7 @@ fn spawn_player(
     let texture_atlas = TextureAtlas::from_grid(texture_handle, Vec2::new(24.0, 24.0), 3, 4, None, None);
     let texture_atlas_handle = texture_atlases.add(texture_atlas);
     commands
-        .spawn_bundle(SpriteSheetBundle {
+        .spawn(SpriteSheetBundle {
             texture_atlas: texture_atlas_handle,
               transform: Transform {
                 translation: Vec3::new(0.0,0.0, 900.0),

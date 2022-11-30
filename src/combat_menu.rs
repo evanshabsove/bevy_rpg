@@ -43,7 +43,7 @@ fn build_combat_menu(
     let mut font = ass.load("fonts/BeBasNeue-Regular.ttf");
     clear_color.0 = Color::BLACK;
     commands
-        .spawn_bundle(NodeBundle {
+        .spawn(NodeBundle {
             style: Style {
                 size: Size {
                     width: Val::Percent(100.0),
@@ -63,7 +63,7 @@ fn build_combat_menu(
         })
         .insert(CombatMenu)
         .with_children(|parent| {
-            parent.spawn_bundle(
+            parent.spawn(
               TextBundle::from_section(
                 "Enemy Health:",
                 TextStyle {
@@ -82,7 +82,7 @@ fn build_combat_menu(
 
 fn spawn_button(parent: &mut ChildBuilder, font: Handle<Font>, text: &str) {
     let mut button = parent
-        .spawn_bundle(ButtonBundle {
+        .spawn(ButtonBundle {
             style: Style {
                 size: Size {
                     width: Val::Percent(10.),
@@ -100,7 +100,7 @@ fn spawn_button(parent: &mut ChildBuilder, font: Handle<Font>, text: &str) {
         button.insert(AttackButton);
     }
     button.with_children(|parent| {
-      parent.spawn_bundle(
+      parent.spawn(
         TextBundle::from_section(
           text.to_string(),
           TextStyle {
