@@ -612,14 +612,17 @@
 							"__tags": [],
 							"__tile": null,
 							"__smartColor": "#FF0023",
-							"iid": "d3b40340-5110-11ed-8d80-d9531b7c79a7",
+							"iid": "83c36b60-5110-11ed-8d80-e5a2cb655ec6",
 							"width": 16,
 							"height": 16,
 							"defUid": 20,
 							"px": [128,80],
 							"fieldInstances": [
-								{ "__identifier": "Stats", "__value": [], "__type": "Array<Int>", "__tile": null, "defUid": 23, "realEditorValues": [] },
-								{ "__identifier": "Name", "__value": null, "__type": "String", "__tile": null, "defUid": 24, "realEditorValues": [] }
+								{ "__identifier": "Stats", "__value": [3,3,2,1], "__type": "Array<Int>", "__tile": null, "defUid": 23, "realEditorValues": [ { "id": "V_Int", "params": [3] }, { "id": "V_Int", "params": [3] }, { "id": "V_Int", "params": [2] }, { "id": "V_Int", "params": [1] } ] },
+								{ "__identifier": "Name", "__value": "Tod", "__type": "String", "__tile": null, "defUid": 24, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["Tod"]
+								}] }
 							]
 						}
 					]
@@ -695,26 +698,6 @@
 							"defUid": 17,
 							"px": [64,192],
 							"fieldInstances": []
-						},
-						{
-							"__identifier": "Enemy_Spawn",
-							"__grid": [8,5],
-							"__pivot": [0,0],
-							"__tags": [],
-							"__tile": null,
-							"__smartColor": "#FF0023",
-							"iid": "559d1dd0-5110-11ed-8d80-8da855219f22",
-							"width": 16,
-							"height": 16,
-							"defUid": 20,
-							"px": [128,80],
-							"fieldInstances": [
-								{ "__identifier": "Stats", "__value": [3,3,2,1], "__type": "Array<Int>", "__tile": null, "defUid": 23, "realEditorValues": [ { "id": "V_Int", "params": [3] }, { "id": "V_Int", "params": [3] }, { "id": "V_Int", "params": [2] }, { "id": "V_Int", "params": [1] } ] },
-								{ "__identifier": "Name", "__value": "Tod", "__type": "String", "__tile": null, "defUid": 24, "realEditorValues": [{
-									"id": "V_String",
-									"params": ["Tod"]
-								}] }
-							]
 						}
 					]
 				},
